@@ -6,6 +6,7 @@ QMainWindow::separator {
 
 QMainWindow {
   background: #FCFCFC;
+  color: #000000;
 }
 
 QMainWindow::separator:hover {
@@ -13,11 +14,8 @@ QMainWindow::separator:hover {
 }
 
 QPushButton {
-  background-color: #d0ebff;
-  border-style: outset;
-  border-width: 4px;
-  border-radius: 8px;
-  border-color: beige;
+  background-color: transparent;
+  border: none;
   /*font: bold 14px;*/
   min-width: 4em;
   /*min-height: 18px;*/
@@ -25,11 +23,11 @@ QPushButton {
   color: #1864ab;
 }
 QPushButton:hover {
-  background-color: #a5d8ff;
+  background-color: transparent;
   border-color: #90EE90;
 }
 QPushButton:disabled {
-  background-color: #BEBEBE;
+  background-color: transparent;
 }
 
 QLineEdit {
@@ -60,6 +58,10 @@ QTableView {
   padding: 4px;
   border: 2px solid #8f8f91;
   border-radius: 6px;
+  background: #FFFFFF;
+  color: #000000;
+  gridline-color: #C0C0C0;
+  alternate-background-color: #F8F8F8;
 }
 
 QTableView QTableCornerButton::section {
@@ -67,8 +69,126 @@ QTableView QTableCornerButton::section {
   border: 2px outset #E0EEEE;
 }
 
+/* 表格表头样式 */
+QHeaderView::section {
+  background: #F0F0F0;
+  color: #000000;
+  padding: 4px;
+  border: 1px solid #C0C0C0;
+  font-weight: bold;
+}
+
+QHeaderView::section:hover {
+  background: #E0E0E0;
+}
+
+QHeaderView::section:pressed {
+  background: #D0D0D0;
+}
+
+/* 水平表头（列标头） */
+QHeaderView::section:horizontal {
+  background: #F0F0F0;
+  color: #000000;
+  border-right: 1px solid #C0C0C0;
+  border-bottom: 1px solid #C0C0C0;
+}
+
+QHeaderView::section:horizontal:hover {
+  background: #E0E0E0;
+}
+
+/* 垂直表头（行标头） */
+QHeaderView::section:vertical {
+  background: #F0F0F0;
+  color: #000000;
+  border-right: 1px solid #C0C0C0;
+  border-bottom: 1px solid #C0C0C0;
+}
+
+QHeaderView::section:vertical:hover {
+  background: #E0E0E0;
+}
+
 QTableView::indicator:unchecked {
   background-color: #d7d6d5;
+}
+
+/* 表格行号列样式 */
+QTableView::item {
+  background: #FFFFFF;
+  color: #000000;
+  border: none;
+  padding: 2px;
+}
+
+QTableView::item:selected {
+  background: #87CEFA;
+  color: #000000;
+}
+
+QTableView::item:alternate {
+  background: #F8F8F8;
+  color: #000000;
+}
+
+/* 表格复选框样式 */
+QTableView::indicator {
+  width: 13px;
+  height: 13px;
+}
+
+QTableView::indicator:unchecked {
+  border: 1px solid #C0C0C0;
+  background: #FFFFFF;
+}
+
+QTableView::indicator:checked {
+  border: 1px solid #C0C0C0;
+  background: #87CEFA;
+}
+
+QTableView::indicator:indeterminate {
+  border: 1px solid #C0C0C0;
+  background: #E0E0E0;
+}
+
+/* 表格网格线样式 */
+QTableView {
+  gridline-color: #C0C0C0;
+}
+
+/* 表格滚动条样式 */
+QTableView QScrollBar:vertical {
+  background: #F0F0F0;
+  width: 12px;
+  border: none;
+}
+
+QTableView QScrollBar::handle:vertical {
+  background: #C0C0C0;
+  border-radius: 6px;
+  min-height: 20px;
+}
+
+QTableView QScrollBar::handle:vertical:hover {
+  background: #A0A0A0;
+}
+
+QTableView QScrollBar:horizontal {
+  background: #F0F0F0;
+  height: 12px;
+  border: none;
+}
+
+QTableView QScrollBar::handle:horizontal {
+  background: #C0C0C0;
+  border-radius: 6px;
+  min-width: 20px;
+}
+
+QTableView QScrollBar::handle:horizontal:hover {
+  background: #A0A0A0;
 }
 
 QDockWidget {
@@ -103,6 +223,8 @@ QListView {
   padding: 4px;
   border: 2px solid #8f8f91;
   border-radius: 6px;
+  background: #FFFFFF;
+  color: #000000;
 }
 
 QListView::item:alternate {
@@ -233,6 +355,8 @@ QProgressBar {
     border: 2px solid grey;
     border-radius: 5px;
     text-align: center;
+    background: #FFFFFF;
+    color: #000000;
 }
 
 QProgressBar::chunk {
@@ -248,6 +372,8 @@ QProgressBar::chunk {
 
 QTabWidget::pane { /* The tab widget frame */
     border-top: 2px solid #C2C7CB;
+    background: #FFFFFF;
+    color: #000000;
 }
 
 QTabWidget::tab-bar {
@@ -285,18 +411,42 @@ QTabBar::tab:!selected {
 
 QDialog {
     background-color: #F8F8F8;
+    color: #000000;
+}
+
+/* LineChart 对话框样式 - 浅色主题 */
+QDialog[objectName="delayChart"],
+QDialog[objectName="latencyChart"] {
+    background-color: #FFFFFF;
+    border: 1px solid #C0C0C0;
+    border-radius: 4px;
+}
+
+QDialog[objectName="delayChart"] QLabel,
+QDialog[objectName="latencyChart"] QLabel {
+    color: #000000;
+}
+
+QDialog[objectName="delayChart"] QPushButton,
+QDialog[objectName="latencyChart"] QPushButton {
+    background-color: transparent;
+    border: none;
+    color: #1864ab;
 }
 
 QTextEdit {
     padding: 4px;
     border: 2px solid #8f8f91;
     border-radius: 6px;
+    background: #FFFFFF;
+    color: #000000;
 }
 
 QComboBox {
     border: 1px solid gray;
     border-radius: 3px;
     padding: 1px 18px 1px 3px;
+    color: #000000;
 }
 
 QComboBox:editable {
@@ -345,6 +495,7 @@ QSpinBox {
     border: 1px solid gray;
     border-radius: 4px;
     padding: 2px;
+    color: #000000;
 }
 
 QSpinBox::up-button {
@@ -484,6 +635,7 @@ QDateTimeEdit {
     border: 1px solid gray;
     border-radius: 4px;
     padding: 2px;
+    color: #000000;
 }
 
 QDateTimeEdit::up-button {
@@ -524,6 +676,39 @@ QDateTimeEdit:enabled:hover,focus {
     border-color: #3498DB
 }
 
+/* 通用字体颜色设置 */
+* {
+    color: #000000;
+}
+
+/* 状态栏样式 */
+QStatusBar {
+    background: #F0F0F0;
+    color: #000000;
+    border-top: 1px solid #C0C0C0;
+}
+
+QStatusBar::item {
+    border: none;
+}
+
+QStatusBar QLabel {
+    color: #000000;
+}
+
+/* 状态栏中的进度条 */
+QStatusBar QProgressBar {
+    background: #FFFFFF;
+    border: 1px solid #C0C0C0;
+    border-radius: 3px;
+    color: #000000;
+}
+
+QStatusBar QProgressBar::chunk {
+    background-color: #05B8CC;
+    border-radius: 2px;
+}
+
 /* QCalendarWidget */
 /* navigation bar */
 QCalendarWidget QWidget#qt_calendar_navigationbar {
@@ -548,4 +733,3 @@ QCalendarWidget QToolButton#qt_calendar_monthbutton::menu-indicator {
     right: 4px;
     width: 12px;
 }
-

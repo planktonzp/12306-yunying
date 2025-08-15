@@ -47,6 +47,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    
+    // 初始化主题
+    currentTheme = "light";
+    QSettings settings;
+    QString savedTheme = settings.value("theme", "light").toString();
+    if (savedTheme == "dark" || savedTheme == "light") {
+        currentTheme = savedTheme;
+    }
 
     QHBoxLayout *hLayout;
     QLabel *label;
@@ -141,6 +149,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     statChart = new BarChartView(this);
     delayChart = new LineChartView(this);
+    delayChart->setObjectName("delayChart");
     delayChart->setTitle(_("时延统计"));
     delayChart->setXSeriesTitle(_("过去/小时"));
     delayChart->setYSeriesTitle(_("ms"));
@@ -212,6 +221,7 @@ void MainWindow::createDockWidget()
     browser->setOpenExternalLinks(true);
 
     latencyChart = new LineChartView;
+    latencyChart->setObjectName("latencyChart");
     latencyChart->legendHide();
 
     //browser->setMinimumSize(QSize(200, 80));
@@ -297,7 +307,7 @@ void MainWindow::createUiComponent()
     */
 
     action = new QAction(tr("&退出..."), this);
-    action->setShortcut(tr("Ctrl+Q"));
+    action->setShortcut(QKeySequence(tr("Ctrl+Q")));
     action->setStatusTip(tr("退出程序"));
     connect(action, &QAction::triggered, this, &MainWindow::close);
     menu->addAction(action);
@@ -329,6 +339,14 @@ void MainWindow::createUiComponent()
     action = new QAction(tr("&设置..."), this);
     action->setStatusTip(tr("打开设置界面"));
     connect(action, &QAction::triggered, settingDialog, &SettingDialog::show);
+    menu->addAction(action);
+    
+    menu->addSeparator();
+    
+    action = new QAction(tr("&切换主题"), this);
+    action->setStatusTip(tr("在浅色和深色主题之间切换"));
+    action->setShortcut(QKeySequence(tr("Ctrl+T")));
+    connect(action, &QAction::triggered, this, &MainWindow::switchTheme);
     menu->addAction(action);
 
     menu = menuBar()->addMenu(tr("&统计"));
@@ -2014,6 +2032,35 @@ void MainWindow::about()
 void MainWindow::onlineHelp()
 {
     QDesktopServices::openUrl(QUrl(_("https://op9.top/help.html#quick-start")));
+}
+
+void MainWindow::switchTheme()
+{
+    if (currentTheme == "dark") {
+        loadTheme("light");
+    } else {
+        loadTheme("dark");
+    }
+}
+
+void MainWindow::loadTheme(const QString &themeName)
+{
+    QString qssPath = QString(":/res/%1.qss").arg(themeName);
+    QFile qss(qssPath);
+    
+    if (qss.open(QFile::ReadOnly)) {
+        qApp->setStyleSheet(qss.readAll());
+        qss.close();
+        currentTheme = themeName;
+        
+        // 保存用户偏好
+        QSettings settings;
+        settings.setValue("theme", themeName);
+        
+        // 显示状态栏消息
+        QString themeText = (themeName == "light") ? tr("浅色主题") : tr("深色主题");
+        showStatusBarMessage(tr("已切换到%1").arg(themeText));
+    }
 }
 
 MainWindow::~MainWindow()

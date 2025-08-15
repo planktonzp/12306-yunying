@@ -53,6 +53,7 @@
         <file>images/double_arrow_right.png</file>
     </qresource>
     <qresource prefix="/res">
-        <file>main.qss</file>
+        <file>light.qss</file>
+        <file>dark.qss</file>
     </qresource>
 </RCC>

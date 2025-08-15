@@ -17,6 +17,7 @@
 #include <QDateEdit>
 #include <QMediaPlayer>
 #include <QProgressDialog>
+#include <QKeySequence>
 #include "passengerdialog.h"
 #include "trainnodialog.h"
 #include "seattypedialog.h"
@@ -98,6 +99,8 @@ public:
     void doGrabTicket();
     void switchTableTicketShowType(bool showType);
     void switchTicketShowType();
+    void switchTheme();
+    void loadTheme(const QString &themeName);
     void resetLoginDialog();
     void showLoginDialog();
     void showMainWindow();
@@ -161,6 +164,8 @@ public:
     QTimer *stopMusicTimer;
 
     QTimer *skipMaintenanceTimer;
+    
+    QString currentTheme;
 
     BarChartView *statChart;
     LineChartView *delayChart;

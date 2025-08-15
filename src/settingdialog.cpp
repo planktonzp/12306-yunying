@@ -55,37 +55,37 @@ void SettingDialog::commonSetting(QTabWidget *tab)
     QCheckBox *cbTTrain = new QCheckBox(tr("T-特快"));
     QCheckBox *cbKTrain = new QCheckBox(tr("K-普快"));
     QCheckBox *cbOTrain = new QCheckBox(tr("其他"));
-    connect(cbOTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbOTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['O'] = state;
     });
-    connect(cbKTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbKTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['K'] = state;
     });
-    connect(cbTTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbTTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['T'] = state;
     });
-    connect(cbZTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbZTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['Z'] = state;
     });
-    connect(cbCTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbCTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['C'] = state;
     });
-    connect(cbDTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbDTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['D'] = state;
     });
-    connect(cbGTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbGTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['G'] = state;
     });
-    connect(cbZiNengTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbZiNengTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['5'] = state;
     });
-    connect(cbFuxingTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbFuxingTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['1'] = state;
     });
-    connect(cbDongGanTrain, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbDongGanTrain, &QCheckBox::checkStateChanged, this, [=](int state) {
         trainTypeShowVec['d'] = state;
     });
-    connect(cbAll, &QCheckBox::stateChanged, this, [=](int state) {
+    connect(cbAll, &QCheckBox::checkStateChanged, this, [=](int state) {
         cbFuxingTrain->setChecked(state);
         cbZiNengTrain->setChecked(state);
         cbDongGanTrain->setChecked(state);

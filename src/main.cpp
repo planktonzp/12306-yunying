@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QFile qss(QStringLiteral(":/res/main.qss"));
+    QFile qss(QStringLiteral(":/res/light.qss"));
     if (qss.open(QFile::ReadOnly)) {
         a.setStyleSheet(qss.readAll());
         qss.close();
